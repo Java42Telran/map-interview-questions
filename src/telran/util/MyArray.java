@@ -1,21 +1,27 @@
 package telran.util;
+
+import java.util.HashMap;
+
 //all methods should be written with complexity O[1]
 public class MyArray {
-//TODO encapsulation
+private int value = 0;
+private int length;
+private HashMap<Integer, Integer> mapIndexValues = new HashMap<>();
 	/**
 	 * creates MyArray object with a given length
 	 * all elements are set in 0
 	 * @param length
 	 */
 	public MyArray(int length) {
-		//TODO
+		this.length = length;
 	}
 	/**
 	 * sets a given value in all array's elements
 	 * @param value
 	 */
 	public void setValue(int value) {
-		//TODO
+		mapIndexValues = new HashMap<>();
+		this.value = value;
 	}
 	/**
 	 * 
@@ -24,8 +30,15 @@ public class MyArray {
 	 * throws ArrayIndexOutOfBoundsException in the case of wrong index
 	 */
 	public int getValueAt(int index) {
-		//TODO
-		throw new ArrayIndexOutOfBoundsException();
+		
+		if (!isValidIndex(index)) {
+			throw new ArrayIndexOutOfBoundsException();
+		}
+		return mapIndexValues.getOrDefault(index, value);
+	}
+	private boolean isValidIndex(int index) {
+		
+		return index >= 0 && index < length;
 	}
 	/**
 	 * sets a given value at a given index
@@ -34,7 +47,10 @@ public class MyArray {
 	 * throws ArrayIndexOutOfBoundsException in the case of wrong index
 	 */
 	public void setValueAt(int index, int value) {
-		//TODO
-		throw new ArrayIndexOutOfBoundsException();
+		
+		if (!isValidIndex(index)) {
+			throw new ArrayIndexOutOfBoundsException();
+		}
+		mapIndexValues.put(index, value);
 	}
 }
