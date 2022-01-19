@@ -19,7 +19,7 @@ public class Anagram {
 
 private static boolean isAnagram(Map<Character, Integer> mapLetters, String anagram) {
 	for(char letter: anagram.toLowerCase().toCharArray()) {
-		if (mapLetters.merge(letter, -1, (a, b) -> a + b) == -1) {
+		if (mapLetters.compute(letter,  (k, v) -> v == null ? -1 : v - 1) == -1) {
 			return false;
 		}
 	}

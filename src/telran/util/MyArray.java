@@ -31,9 +31,7 @@ private HashMap<Integer, Integer> mapIndexValues = new HashMap<>();
 	 */
 	public int getValueAt(int index) {
 		
-		if (!isValidIndex(index)) {
-			throw new ArrayIndexOutOfBoundsException();
-		}
+		checkWithException(index);
 		return mapIndexValues.getOrDefault(index, value);
 	}
 	private boolean isValidIndex(int index) {
@@ -48,9 +46,12 @@ private HashMap<Integer, Integer> mapIndexValues = new HashMap<>();
 	 */
 	public void setValueAt(int index, int value) {
 		
+		checkWithException(index);
+		mapIndexValues.put(index, value);
+	}
+	private void checkWithException(int index) {
 		if (!isValidIndex(index)) {
 			throw new ArrayIndexOutOfBoundsException();
 		}
-		mapIndexValues.put(index, value);
 	}
 }
